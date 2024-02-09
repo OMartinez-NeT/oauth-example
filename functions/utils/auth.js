@@ -7,7 +7,7 @@ const TOKEN_HOST = 'https://api.netlify.com'
 const TOKEN_URL =  'https://api.netlify.com/oauth/token'
 const USER_PROFILE_URL = 'https://api.netlify.com/api/v1/user'
 const AUTHORIZATION_URL = 'https://app.netlify.com/authorize'
-const REDIRECT_URL = `${SITE_URL}/.netlify/functions/auth-callback`
+const REDIRECT_URL = `https://bcf9-2800-300-8391-9560-dd5b-7e88-8cf7-982.ngrok-free.app/callback`
 
 
 const config = {
@@ -30,7 +30,18 @@ function authInstance(credentials) {
   if (!credentials.client.secret) {
     throw new Error(`MISSING REQUIRED ENV VARS. Please set ${clientSecretKey}`)
   }
-  return simpleOauth.create(credentials)
+  const newCredentials = new simpleOauth.AuthorizationCode({
+    client: {
+      id: credentials.client.id,
+      secret: credentials.client.secret
+    },
+    auth: {
+      tokenHost: credentials.auth.tokenHost,
+      tokenPath: credentials.auth.tokenPath,
+      authorizePath: credentials.auth.authorizePath
+    }
+  })
+  return newCredentials
 }
 
 module.exports = {
