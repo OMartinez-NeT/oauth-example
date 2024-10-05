@@ -7,7 +7,7 @@
     "netlify": "^2.4.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5",
+    "react-scripts": "2.1.8",
     "simple-oauth2": "^5.0.0",
     "time-ago": "^0.2.1"
   },
